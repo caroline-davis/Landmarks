@@ -7,6 +7,7 @@
 import SwiftUI
 
 struct LandmarkList: View {
+    // thism @EnvironmentObject happens in the children and .environmentObject only happens in the parent class
     @EnvironmentObject var modelData: ModelData
     @State private var showFavoritesOnly = false
 

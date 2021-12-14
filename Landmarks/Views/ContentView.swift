@@ -13,6 +13,8 @@ struct ContentView: View {
     }
 }
 
+// this .environmentObject only happens in the parent class
+
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
