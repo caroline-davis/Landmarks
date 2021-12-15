@@ -16,7 +16,15 @@ struct ProfileHost: View {
 
     var body: some View {
         VStack (alignment: .leading, spacing: 20) {
+            // this stops the users profile saving whilst they are editing, they can also cancel editing
             HStack {
+                if editMode?.wrappedValue == .active {
+                    Button("Cancel"){
+                        draftProfile = modelData.profile
+                        editMode?.animation().wrappedValue = .inactive
+                    }
+                }
+
                 Spacer()
                 EditButton()
             }
@@ -24,6 +32,12 @@ struct ProfileHost: View {
                 ProfileSummary(profile: modelData.profile)
             } else {
                 ProfileEditor(profile: $draftProfile)
+                    .onAppear {
+                        draftProfile = modelData.profile
+                    }
+                    .onDisappear {
+                        modelData.profile = draftProfile
+                    }
             }
         }
         .padding()
