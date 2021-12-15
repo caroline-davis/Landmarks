@@ -12,6 +12,7 @@ import Combine
 final class ModelData: ObservableObject {
     // An observable object needs to publish any changes to its data, so that its subscribers can pick up the change.
     @Published var landmarks: [Landmark] = load("landmarkData.json")
+    @Published var profile = Profile.default
 
     var features: [Landmark] {
         landmarks.filter { $0.isFeatured }
